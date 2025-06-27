@@ -1,175 +1,163 @@
+
 # 📊 Finance Dashboard
 
-A modern, full-stack finance dashboard web app built with **React**, **TypeScript**, **Node.js**, **Express**, **MongoDB**, and **MUI**. This dashboard allows you to track, visualize, and analyze financial transactions in a clean, responsive interface with dynamic charts, filters, and export features.
+A responsive, modern full-stack finance dashboard web application that helps visualize and manage revenue and expenses. It supports dynamic filtering, CSV export, light/dark theming, JWT-ready backend, Docker support, and more.
+
+## Technologies Used
+
+- **Frontend**: React, TypeScript, Vite, Material UI (MUI), Recharts
+- **Backend**: Node.js, Express.js, TypeScript
+- **Database**: MongoDB
+- **Styling**: MUI Custom Themes (Dark/Light Mode)
+- **Charting**: Recharts (Line Charts)
+- **Containerization**: Docker & Docker Compose
+- **Authentication**: JWT (ready for extension)
+- **Utilities**: ESLint, Prettier, Git, GitHub
 
 ---
 
-## 🛠️ Tech Stack
+## Features
 
-| Layer        | Technologies Used                                         |
-|--------------|-----------------------------------------------------------|
-| **Frontend** | React, TypeScript, Vite, MUI (Material UI), Recharts      |
-| **Backend**  | Node.js, Express.js, TypeScript                           |
-| **Database** | MongoDB                                                   |
-| **Styling**  | MUI v5, Custom Dark/Light Theme                           |
-| **Charts**   | Recharts (Line Charts for financial trends)               |
-| **Auth**     | JWT-ready setup, Bcrypt                                   |
-| **Tools**    | Docker, Git, VSCode                                       |
+- 📈 Visual overview of Revenue vs Expenses
+- 📋 Transaction table with:
+  - Category and status filters
+  - Full-text search
+  - Pagination and custom column styling
+- 🎨 Light/Dark theme toggle
+- 👤 Recent user avatars with profile images
+- 🧾 Export transaction data to CSV
+- 🔐 JWT-ready backend
+- 💻 Fully responsive design
+- 🐳 Dockerized deployment support
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
-\`\`\`
+```bash
 finance-dashboard/
-├── client/           # React + Vite frontend
-├── server/           # Express + TypeScript backend
-├── docker-compose.yml
-├── README.md
-└── .env (your secrets)
-\`\`\`
+├── client/                   # Frontend (React + Vite)
+│   ├── src/
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Main dashboard page
+│   │   └── ...
+│   └── public/
+│
+├── server/                   # Backend (Express + MongoDB)
+│   ├── src/
+│   │   ├── routes/           # API endpoints
+│   │   ├── models/           # Mongoose models
+│   │   └── ...
+│   └── .env.example
+│
+├── docker-compose.yml        # Compose file for full stack
+└── README.md
+````
 
 ---
 
-## 🚀 Features
+## Setup Instructions
 
-✅ Modern dashboard layout with:
+### Prerequisites
 
-- 📈 Dynamic **Monthly Revenue vs Expense** chart
-- 🧾 **Transactions Table** with:
-  - Search by user, status, category
-  - Filter by **category** & **status**
-  - CSV Export button
-  - Custom styling and avatars
-- 🎨 Theme toggle (Light / Dark mode)
-- 👤 User profile images (avatars)
-- 🧠 Optimized and responsive design
-- 🐳 Full **Docker support**
-- 🔐 JWT-ready backend (add auth with ease later)
+Make sure you have the following installed:
+
+* **Node.js** (v18+)
+* **MongoDB** (local or MongoDB Atlas)
+* **Docker & Docker Compose** (optional)
+* **Git**
 
 ---
 
-## 🧑‍💻 How to Run This Project
+### 🚀 Run the App Locally
 
-### ⚙️ Prerequisites
+#### 1. Backend Setup
 
-- Node.js \`v18+\`
-- npm (v9+) or yarn
-- MongoDB installed locally or use MongoDB Atlas
-- Docker & Docker Compose (**optional**, but recommended)
-
----
-
-### ✅ Option 1: Run with Docker (Recommended)
-
-1. Make sure Docker is running.
-2. Then from the **project root**:
-
-\`\`\`bash
-docker-compose up --build
-\`\`\`
-
-This will:
-- Start MongoDB, backend, and frontend containers
-- App will be available at:
-  - Frontend → \`http://localhost:5173\`
-  - Backend → \`http://localhost:5000\`
-
----
-
-### 🧰 Option 2: Run Locally Without Docker
-
-#### 🖥 Backend Setup
-
-\`\`\`bash
+```bash
 cd server
-cp .env.example .env         # Fill in Mongo URI and JWT_SECRET
+cp .env.example .env
 npm install
 npm run dev
-\`\`\`
+```
 
-Runs at: \`http://localhost:5000\`
+> Runs at: `http://localhost:5000`
 
-#### 🌐 Frontend Setup
+#### 2. Frontend Setup
 
-\`\`\`bash
+```bash
 cd client
 npm install
 npm run dev
-\`\`\`
+```
 
-Runs at: \`http://localhost:5173\`
+> Runs at: `http://localhost:5173`
 
 ---
 
-### 🔐 Sample \`.env\` for Server
+### 🐳 Dockerized Setup (Recommended)
 
-\`\`\`env
+```bash
+docker-compose up --build
+```
+
+> This starts both the client, server, and MongoDB in containers.
+
+* Frontend → `http://localhost:5173`
+* Backend → `http://localhost:5000`
+
+---
+
+## Example `.env` for Server
+
+```env
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/finance-dashboard
 JWT_SECRET=supersecretkey123
-\`\`\`
+```
 
 ---
 
+## Docker: Build & Push Image
 
-
-## 🐳 Docker Image & DockerHub Push
-
-\`\`\`bash
-# Build the image (from project root)
+```bash
+# Build your image (from root)
 docker build -t yourusername/finance-dashboard .
 
-# Push to DockerHub
+# Push it to DockerHub
 docker push yourusername/finance-dashboard
-\`\`\`
+```
 
-Update \`docker-compose.yml\` with your custom image name if needed.
-
----
-
-
-
-
-## 🧯 Troubleshooting & Tips
-
-| Issue | Fix |
-|-------|-----|
-| **MongoDB not connecting?** | Make sure MongoDB is running locally or update your \`.env\` with a correct Atlas URI |
-| **Port already in use?** | Kill conflicting processes or change \`PORT\` in \`.env\` |
-| **CORS errors?** | Ensure backend has CORS enabled (\`cors()\` in Express) |
-| **Docker not working on Windows?** | Use **WSL2 backend** and make sure Docker Desktop is properly configured |
-| **App won’t start?** | Run \`npm install\` in both \`client\` and \`server\` folders, check logs |
+Update `docker-compose.yml` to use this image in production.
 
 ---
 
-## 🧼 Useful Commands
+## Screenshots (🖼 Add Your Own)
 
-\`\`\`bash
-# Run both client + server manually
-npm run dev         # from client/
-npm run dev         # from server/
-
-# Run both together (optional setup)
-npm install concurrently --save-dev
-# Add to root package.json:
-# "dev": "concurrently \"npm run dev --prefix client\" \"npm run dev --prefix server\""
-\`\`\`
+* Dashboard with summary cards
+* Recent transactions panel
+* Chart visualization
+* Responsive layout preview
 
 ---
 
-## 📄 License
+## Contributing
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome! If you'd like to add authentication, improve the UI, or contribute tests — go for it.
+1. Fork the repo 🍴
+2. Create a new branch: `feature/your-feature`
+3. Commit and push
+4. Create a pull request ✅
 
 ---
 
-## 🌍 Connect
+## License
 
-Made with ❤️ by [Shreyash] – for personal/educational/demo purposes.
+Licensed under the **MIT License**.
+
+---
+
+## GitHub Repo
+
+> [https://github.com/yashx007/Finance-App](https://github.com/yashx007/Finance-App)
+
+---
+
