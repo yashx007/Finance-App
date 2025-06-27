@@ -129,14 +129,7 @@ docker push yourusername/finance-dashboard
 
 Update `docker-compose.yml` to use this image in production.
 
----
 
-## Screenshots (🖼 Add Your Own)
-
-* Dashboard with summary cards
-* Recent transactions panel
-* Chart visualization
-* Responsive layout preview
 
 ---
 
