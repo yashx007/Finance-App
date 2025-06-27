@@ -1,0 +1,41 @@
+
+
+.topbar-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-title {
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 1.25rem;
+  color: var(--mui-palette-text-primary);
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar-avatar {
+  width: 36px;
+  height: 36px;
+  transition: 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .topbar-title {
+    font-size: 1rem;
+  }
+
+  .topbar-actions {
+    gap: 6px;
+  }
+
+  .topbar-avatar {
+    width: 28px !important;
+    height: 28px !important;
+  }
+}
